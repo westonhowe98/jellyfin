@@ -158,6 +158,12 @@ namespace MediaBrowser.Model.Configuration
         public int MaxAudiobookResume { get; set; } = 5;
 
         /// <summary>
+        /// Gets or sets the time in minutes that we should continue watching before deleting it.
+        /// </summary>
+        /// <value>The continue watching delete time.</value>
+        public int ContinueWatchingDeleteTime { get; set; } = 0;
+
+        /// <summary>
         /// Gets or sets the delay in seconds that we will wait after a file system change to try and discover what has been added/removed
         /// Some delay is necessary with some items because their creation is not atomic.  It involves the creation of several
         /// different directories and files.

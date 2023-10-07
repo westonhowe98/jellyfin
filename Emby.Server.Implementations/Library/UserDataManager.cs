@@ -276,6 +276,16 @@ namespace Emby.Server.Implementations.Library
                 positionTicks = 0;
             }
 
+            if (data.LastPlayedDate.HasValue && data.PlaybackPositionTicks > 0)
+            {
+                var timeSinceLastPlayed = DateTime.UtcNow - data.LastPlayedDate.Value;
+
+                if (timeSinceLastPlayed.TotalSeconds > _config.Configuration.ContinueWatchingDeleteTime)
+                {
+                    data.IsExcludedFromContinueWatching = true;
+                }
+            }
+
             data.PlaybackPositionTicks = positionTicks;
 
             return playedToCompletion;
